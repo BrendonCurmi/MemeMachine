@@ -1,0 +1,55 @@
+@shadow: #888888;
+@base: #fff;
+@mix: mix(@base, contrast(@base), 90%);
+@dark: darken(@base, 20%);
+@light: lighten(@base, 20%);
+
+.root_parent {
+  //-fx-effect: dropshadow(three-pass-box, @shadow, 15, 0, 0, 0);
+  //-fx-background-insets: 2;
+}
+.root {
+  -fx-base: @base;
+  -fx-accent: #555;
+  -fx-focus-color: #444;
+  -fx-faint-focus-color: #444;
+}
+
+/* Title */
+#menuBar * * {
+  -fx-text-fill: @dark;
+}
+.tooltip, .tooltip * {
+  -fx-background-color: @mix;
+  -fx-text-fill: @dark !important;
+  -fx-font-weight: bold;
+  -fx-font-size: 20px;
+}
+.menu-item:hover, .menu-item:focused {
+  -fx-background-color: @dark;
+}
+.titleBarExitBtn {
+  -fx-border-color: transparent;
+  -fx-background-color: transparent;
+  //-fx-background-image: url("/me/McFusion/MemeMachine/imgs/btn_exit.png");
+  //-fx-background-size: 15px;
+  //-fx-background-repeat: no-repeat;
+  //-fx-background-position: center;
+  &:hover {
+    -fx-background-color: @mix;
+    -fx-background-radius: 10;
+  }
+}
+#btnTagEdit * {
+  -fx-text-fill: @base;
+  -fx-background-color: @light;
+}
+
+/* Home */
+.homeScrollPane {
+  //.root_parent();
+}
+
+.selected-cell {
+  -fx-background-color: @mix;
+}

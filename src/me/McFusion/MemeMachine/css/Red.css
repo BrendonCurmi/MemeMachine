@@ -1,0 +1,37 @@
+.root {
+  -fx-base: #ff0000;
+  -fx-accent: #555;
+  -fx-focus-color: #444;
+  -fx-faint-focus-color: #444;
+}
+/* Title */
+#menuBar * * {
+  -fx-text-fill: #990000;
+}
+.tooltip,
+.tooltip * {
+  -fx-background-color: #ff1919;
+  -fx-text-fill: #990000 !important;
+  -fx-font-weight: bold;
+  -fx-font-size: 20px;
+}
+.menu-item:hover,
+.menu-item:focused {
+  -fx-background-color: #990000;
+}
+.titleBarExitBtn {
+  -fx-border-color: transparent;
+  -fx-background-color: transparent;
+}
+.titleBarExitBtn:hover {
+  -fx-background-color: #ff1919;
+  -fx-background-radius: 10;
+}
+#btnTagEdit * {
+  -fx-text-fill: #ff0000;
+  -fx-background-color: #ff6666;
+}
+/* Home */
+.selected-cell {
+  -fx-background-color: #ff1919;
+}

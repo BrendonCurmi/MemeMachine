@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root_parent" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.McFusion.MemeMachine.controllers.HomeController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <fx:include fx:id="titleBar" source="TitleBar.fxml" />
+            <HBox alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="785.0">
+                     <children>
+                        <TextField fx:id="search" prefHeight="31.0" prefWidth="555.0" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="box" alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="235.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <Label text="Label" BorderPane.alignment="CENTER" />
+      <fx:include source="Footer.fxml" />
+   </bottom>
+   <center>
+      <ScrollPane onDragDropped="#onDragDropped" onDragOver="#onDragOver" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <GridPane fx:id="pane" prefHeight="185.0" prefWidth="1021.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="180.0" prefHeight="180.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+         <styleClass>
+            <String fx:value="edge-to-edge" />
+            <String fx:value="homeScrollPane" />
+         </styleClass>
+      </ScrollPane>
+   </center>
+</BorderPane>
