@@ -136,6 +136,7 @@ public class HomeController extends Controller {
     private HBox load(String uuid) throws FileNotFoundException {
         String path = Database.getPath() + File.separator + uuid;
 
+
         HBox container;
         if (isPlayer(uuid)) {
             MemePlayer memePlayer = new MemePlayer(path);
@@ -187,9 +188,13 @@ public class HomeController extends Controller {
             String uuid;
             while (set.next()) {
                 uuid = set.getString("uuid");
-                load(uuid);
+                try {
+                    load(uuid);
+                } catch (FileNotFoundException ex) {
+                    Database.removeMeme(uuid);
+                }
             }
-        } catch (SQLException | FileNotFoundException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
@@ -201,9 +206,13 @@ public class HomeController extends Controller {
                 String uuid;
                 while (set.next()) {
                     uuid = Database.getMemeUUID(set.getInt("meme_id"));
-                    load(uuid);
+                    try {
+                        load(uuid);
+                    } catch (FileNotFoundException ex) {
+                        Database.removeMeme(uuid);
+                    }
                 }
-            } catch (SQLException | FileNotFoundException ignored) {
+            } catch (SQLException ignored) {
             }
         }
     }

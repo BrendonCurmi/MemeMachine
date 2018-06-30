@@ -6,6 +6,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class MemePlayer {
@@ -15,8 +16,9 @@ public class MemePlayer {
     private boolean isPlaying = false;
     private File file;
 
-    public MemePlayer(String path) {
+    public MemePlayer(String path) throws FileNotFoundException {
         file = new File(path);
+        if (!file.exists()) throw new FileNotFoundException("Media '" + path + "' not found");
         player = new MediaPlayer(new Media(file.toURI().toString()));
         player.setAutoPlay(false);
         player.setCycleCount(MediaPlayer.INDEFINITE);
