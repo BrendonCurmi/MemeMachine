@@ -59,12 +59,14 @@ public class HomeController extends Controller {
 
     @FXML
     private void onDragOver(DragEvent event) {
-        if (event.getDragboard().hasFiles() || event.getDragboard().hasUrl())
+        if (event.getDragboard().hasFiles() || event.getDragboard().hasUrl()) {
             event.acceptTransferModes(TransferMode.ANY);
+        }
     }
 
     @FXML
     private void onDragDropped(DragEvent event) {
+        if (Database.getPath().equals("none")) return;
         if (event.getDragboard().hasFiles()) {// From Local
             List<File> files = event.getDragboard().getFiles();
             String uuid;
@@ -83,14 +85,16 @@ public class HomeController extends Controller {
         } else if (event.getDragboard().hasUrl()) {// From Browser
             try {
                 String url = event.getDragboard().getUrl();
-                File tempFile = new File(Database.getPath() + File.separator + "temp.png");
-                if (!isSupportedFormat(url)) {
+                if (url != null) {
+                    File tempFile = new File(Database.getPath() + File.separator + "temp.png");
+                    if (!isSupportedFormat(url)) {
+                        MemeMachine.deleteFile(tempFile);
+                        return;
+                    }
+                    MemeMachine.copyFile(tempFile, new URL(url).openStream());
+                    saveFile(tempFile, true);
                     MemeMachine.deleteFile(tempFile);
-                    return;
                 }
-                MemeMachine.copyFile(tempFile, new URL(url).openStream());
-                saveFile(tempFile, true);
-                MemeMachine.deleteFile(tempFile);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

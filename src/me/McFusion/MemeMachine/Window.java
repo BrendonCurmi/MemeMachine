@@ -37,8 +37,7 @@ public class Window extends Application {
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setOnCloseRequest(event -> MemeMachine.exit());
-//        primaryStage.setScene(scenes.get(0));// To place window in the center
-        setCurrentScene(0);
+        primaryStage.setScene(scenes.get(0));// To place window in the center
 
         loadStyles();
 
