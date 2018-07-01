@@ -22,6 +22,7 @@ import me.McFusion.MemeMachine.MemeMachine;
 import me.McFusion.MemeMachine.nodes.MemePlayer;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,6 +108,7 @@ public class HomeController extends Controller {
     }
 
     /* Text */
+
     /**
      * Formats the text(tag string) for internal use, such as the database and Autocomplete,
      * from the field.
@@ -135,7 +137,6 @@ public class HomeController extends Controller {
 
     private HBox load(String uuid) throws FileNotFoundException {
         String path = Database.getPath() + File.separator + uuid;
-
 
         HBox container;
         if (isPlayer(uuid)) {
@@ -224,7 +225,10 @@ public class HomeController extends Controller {
 
     private String saveFile(File file, boolean select) {
         String uuid = UUID.randomUUID().toString();
-        uuid += (isPlayer(file.getName())) ? ".mp4" : ".png";
+        if (isPlayer(file.getName())) uuid += ".mp4";
+        else if (file.getName().endsWith(".gif")) uuid += ".gif";
+        else uuid += ".png";
+
         try {
             FileInputStream inputStream = new FileInputStream(file);
             MemeMachine.copyFile(new File(Database.getPath() + File.separator + uuid), inputStream);
@@ -261,7 +265,8 @@ public class HomeController extends Controller {
             if (isPlayer(uuid)) {
                 MemePlayer.getMemePlayer(selectedContainer).togglePlay();
                 copyFileToClipboard(MemePlayer.getMemePlayer(selectedContainer).getFile());
-            } else copyImageToClipboard(((ImageView) selectedContainer.getChildren().get(0)).getImage());
+            } else if (uuid.endsWith(".gif")) copyFileToClipboard(new File(Database.getPath() + File.separator + uuid));
+            else copyImageToClipboard(((ImageView) selectedContainer.getChildren().get(0)).getImage());
         }
         this.selectedContainer = selectedContainer;
         search.setText(getTagsOfSelectedCell(uuid));
@@ -311,12 +316,13 @@ public class HomeController extends Controller {
 
     private boolean isEditingMode = false;
     private String oldEditingTag = null;
+
     private void makeSearchBarBtns() {
         if (!isEditingMode)
             makeBtn(new FxIconicsButton.Builder(FxFontAwesome.Icons.faw_pencil), "Editing Mode", event -> onEnterEditingMode());
         else {
-            makeBtn(new FxIconicsButton.Builder(FxFontGoogleMaterial.Icons.gmd_add), "Add Tag",event -> onAddTagAction());
-            makeBtn(new FxIconicsButton.Builder(FxFontGoogleMaterial.Icons.gmd_remove), "Remove Tag",event -> onRemoveTagAction());
+            makeBtn(new FxIconicsButton.Builder(FxFontGoogleMaterial.Icons.gmd_add), "Add Tag", event -> onAddTagAction());
+            makeBtn(new FxIconicsButton.Builder(FxFontGoogleMaterial.Icons.gmd_remove), "Remove Tag", event -> onRemoveTagAction());
             makeBtn(new FxIconicsButton.Builder(FxFontGoogleMaterial.Icons.gmd_edit), "Edit Tag Name", event -> onEditTagAction());
             makeBtn(new FxIconicsButton.Builder(FxFontGoogleMaterial.Icons.gmd_clear), "Exit Editing Mode", event -> onExitEditingMode());
         }

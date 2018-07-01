@@ -14,9 +14,10 @@ The program saves every entry to that local path, and handles everything else pr
 - Search for entries using tags.
 - Create, delete, and edit tags, while no entry is selected. (Ctrl + Left Click a selected entry to deselect)
 - Autocomplete functionality to help you remember and finish typing out tags.
-- Copy the picture or video just by clicking it, and paste it where you want to send it. (Videos can only be pasted on the computer)
+- Copy the picture or video just by clicking it, and paste it where you want to send it. (Only still pictures can be pasted online)
 - Can keep the window always on top, for ease of just dragging and dropping from Chrome.
 - Able to export and import the database, so as to not lose the saved entries.
+- Can support png, jpg, jpeg, gif, and mp4 media
 
 **What are memes?**<br/>
 Memes are humorous pictures or videos shared on the internet.

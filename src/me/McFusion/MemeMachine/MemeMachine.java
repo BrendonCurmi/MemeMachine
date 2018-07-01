@@ -9,11 +9,16 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.nio.file.*;
 
+/**
+ * Makes it easier to save, index, and send pictures and videos. (Mostly internet memes)
+ *
+ * @author Brendon Curmi
+ */
 public class MemeMachine {
 
     static final String TITLE = "MemeMachine";
     private static final String AUTHOR = "Brendon Curmi";
-    public static final String[] SUPPORTED_FORMATS = {"png", "jpg", "jpeg", "mp4", "webm"};
+    public static final String[] SUPPORTED_FORMATS = {"png", "jpg", "jpeg", "gif", "mp4"};
     public static File databaseFile;
 
     public static void main(String[] args) {
